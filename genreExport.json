@@ -1,0 +1,5 @@
+{"_id":{"$oid":"615680f492980eb33ecd771e"},"Name":"Thriller","Description":"Thrillers are characterized by the moods they elicit, giving viewers heightened feelings of suspense, excitement, surprise, anticipation, and anxiety."}
+{"_id":{"$oid":"6156850c92980eb33ecd771f"},"Name":"Drama","Description":"Dramas are narrative fiction works intended to be more serious than humorous in tone."}
+{"_id":{"$oid":"6157aa7292980eb33ecd7720"},"Name":"Documentary","Description":"A non-fictional movie intended to document reality primarily for the purposes of instruction, education, or maintaining a historical record."}
+{"_id":{"$oid":"6157aab692980eb33ecd7721"},"Name":"Biography","Description":"An account of someon's life written by someone else."}
+{"_id":{"$oid":"6157ab2f92980eb33ecd7722"},"Name":"Action","Description":"A film genre in which the protagonist is thrust into a series of events that typically include violence, extended fighting, physical feats, rescues and frantic chases."}

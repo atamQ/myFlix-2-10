@@ -1,0 +1,2 @@
+{"_id":{"$oid":"6243c241e85cfc2ba9354ec2"},"Username":"test1","Password":"passwordTest1","Email":"test1@web.com","FavoriteMovies":[{"$oid":"623d1bc817c6d9c4a4754ce2"},{"$oid":"623d1bc817c6d9c4a4754cbb"}],"__v":0}
+{"_id":{"$oid":"6258ec04d2ab1b3d01db362c"},"Username":"test2","Password":"$2a$10$UALYWXs3q2Fe40qVYpnXhupXYNx7lGgSfq1FRyVP87VEywqKKWisy","Email":"test2@web.com","Birthday":{"$date":"1990-01-01T07:00:00Z"},"FavoriteMovies":[],"__v":0}

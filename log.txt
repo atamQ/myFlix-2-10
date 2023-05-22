@@ -1,0 +1,12 @@
+URL: /movie_api/
+Timestamp: Wed Aug 25 2021 20:43:39 GMT-0600 (Mountain Daylight Time)
+
+URL: /movie_api/
+Timestamp: Wed Aug 25 2021 20:44:55 GMT-0600 (Mountain Daylight Time)
+
+URL: /favicon.ico
+Timestamp: Wed Aug 25 2021 20:44:55 GMT-0600 (Mountain Daylight Time)
+
+URL: /movie_api/users
+Timestamp: Wed Aug 25 2021 21:33:59 GMT-0600 (Mountain Daylight Time)
+

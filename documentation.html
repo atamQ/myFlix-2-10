@@ -1,0 +1,89 @@
+<h2>This is a documentation page that will have info on the files in this application.</h2>
+
+<p>
+1)  Request: GET<br>
+    URL: /Movies<br>
+    Response: all movies, all data<br>
+
+2)  Request: GET<br>
+    URL: /movies/:title<br>
+    Response: movie data by title<br>
+
+3)  Request: GET<br>
+    URL: /movies/:genre<br>
+    Response: movie data by genre<br>
+
+4)  Request: GET<br>
+    URL: /movies/:director<br>
+    Response: director data by name<br>
+
+5)  Request: POST<br>
+    URL: /users<br>
+    Response: add user data<br>
+
+6)  Request: PUT<br>
+    URL: /users/:username<br>
+    Response: update user by username<br>
+
+7)  Request: POST<br>
+    URL: /movies<br>
+    Response: add movie to list<br>
+
+8)  Request: DELETE<br>
+    URL: /movies/:title<br>
+    Response: remove a movie from list<br>
+
+9)  Request: DELETE<br>
+    URL: /users/:username<br>
+    Response: delete user by<br>
+</p>
+<p>
+    Part 2 information on endpoints<br>
+    response1:<br>
+      Data returned: JSON array<br>
+      Endpoint URL: 'students'<br>
+      Method: Get<br>
+      Query parameters: All parameters in each JSON instance<br>
+      Query Format: nothing added to endpoint<br>
+      Response format: JSON array<br>
+
+    response2:<br>
+      Data returned: JSON object<br>
+      Endpoint URL: 'students/:name'<br>
+      Method: Get<br>
+      Query parameters: name<br>
+      Query Format: first name<br>
+      Response format: JSON array<br>
+
+    response3:<br>
+      Data returned: none (object added)<br>
+      Endpoint URL: 'students'<br>
+      Method: Post<br>
+      Query parameters: JSON object<br>
+      Query Format: string<br>
+      Response format: JSON obj added to array<br>
+
+    response4:<br>
+      Data returned: none (deletion)<br>
+      Endpoint URL: 'students/:id'<br>
+      Method: Delete<br>
+      Query parameters: id #<br>
+      Query Format: char<br>
+      Response format: JSON obj removal<br>
+
+    response5:<br>
+      Data returned: string<br>
+      Endpoint URL: 'students/:name/:class/:grade'<br>
+      Method: Put<br>
+      Query parameters: grade in specific class<br>
+      Query Format: char<br>
+      Response format: string<br>
+
+    response6:<br>
+      Data returned: char<br>
+      Endpoint URL: 'students/:name/gpa'<br>
+      Method: Get<br>
+      Query parameters: name of student for req GPA<br>
+      Query format: string<br>
+      Response format: char<br>
+</p>
