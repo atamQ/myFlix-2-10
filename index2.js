@@ -8,24 +8,34 @@ const express = require('express'),
 const Movies = Models.Movie;
 const Users = Models.User;
 
-const app = express(); //APP DEFINITION
+const app = express();
 const cors = require('cors');
 
 const { check, validationResult } = require('express-validator');
 
-app.use(cors()); //THIS CURRENTLY ALLOWS ALL ORIGINS
+app.use(cors());
+/*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1) {
+      let message = 'The CORS policy for this application doesn't allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+*/
 
-let auth = require('./auth')(app); //'app' PORTION ENSURES EXPRESS IS AVAILABLE IN AUTH.JS, MUST BE AFTER bodyParser lines
+let auth = require('./auth')(app);
+const passport = require('passport');
 
-const passport = require('passport'); //MUST BE AFTER ./auth LINE
-require('./passport');  //MUST BE AFTER ./auth LINE
-
+require('./passport');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 //mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-//mongodb+srv://user-matt:LOT2272dm@myflixdb.7b6ot.mongodb.net/myFlixDB?retryWrites=true&w=majority
 
 //MAIN PAGE
 app.get('/', (req, res) => {
@@ -104,17 +114,45 @@ app.get('/users/:Username', (req, res) => {
     });
 });
 
+//UPDATE A USERS INFO
+/* JSON FORMAT EXPECTED
+{
+  Username: String,
+  Password: String,
+  Email: String,
+  Birthday: Date
+}
+*/
+app.put('/users/:Username', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $set:
+    {
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  }, { new: true }, //MAKES SURE UPDATED DOC IS RETURNED
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser)
+      }
+    });
+})
+
 //ADD/REGISTER A USER
 app.post('/users',
+  //VALIDATOR
   [
     check('Username', 'Username is required').isLength({ min: 5 }),
-    check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
-    check('Password', 'Password is not required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid.').isEmail()
+    check('Username', 'Username contains non alphanumeric characters').isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email is not valid').isEmail()
   ], (req, res) => {
-    //check the validation object for errors
     let errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
@@ -130,7 +168,7 @@ app.post('/users',
           Users
             .create({
               Username: req.body.Username,
-              Password: hashedPassword, //req.body.Password,
+              Password: req.body.Password,
               Email: req.body.Email,
               Birthday: req.body.Birthday
             })
@@ -202,14 +240,13 @@ app.delete('/users/:Username', (req, res) => {
     });
 });
 
-
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('Listening on Port ' + port);
 });
 
 //app.listen(8080, () => {
-//  console.log('App listening on port 8080.');
+ // console.log('App listening on port 8080.');
 //});
 
 
