@@ -5,12 +5,13 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   uuid = require('uuid'); //generates unique identifiers with Node
 
-const { check, validationResult } = require('express-validator');
-
 const Movies = Models.Movie;
 const Users = Models.User;
+
 const app = express();
 const cors = require('cors');
+
+const { check, validationResult } = require('express-validator');
 
 app.use(cors());
 /*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
@@ -25,13 +26,16 @@ app.use(cors({
   }
 }));
 */
-app.use(bodyParser.json());
 
 let auth = require('./auth')(app);
 const passport = require('passport');
+
 require('./passport');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //MAIN PAGE
 app.get('/', (req, res) => {
