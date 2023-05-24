@@ -147,7 +147,7 @@ app.put('/users/:Username', (req, res) => {
 app.post('/users',
   //VALIDATOR
   [
-    check('Username', 'Username is required').isLength({ min: 5 }),
+    check('Username', 'Username is required').isLength({ min: 3 }),
     check('Username', 'Username contains non alphanumeric characters').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email is not valid').isEmail()
